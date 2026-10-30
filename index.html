@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#10131b"><title>FaceBlend Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="brand"><span class="logo">FB</span><div><h1>FaceBlend Studio</h1><p>Computer Vision Face Replacement</p></div></div><span class="tag">BETA 0.1</span></header>
+<main>
+  <section class="intro"><h2>Your video. Your face reference.</h2><p>Choose a video and a face photo. The app tracks facial landmarks and warps the reference face onto the moving face — without generative AI.</p></section>
+  <section class="panel">
+    <label class="upload" for="videoFile"><span class="ico">▣</span><b>1. Choose video</b><small id="videoName">MP4 / MOV from Photos or Files</small></label>
+    <input id="videoFile" type="file" accept="video/*" hidden>
+    <label class="upload" for="faceFile"><span class="ico">◉</span><b>2. Choose replacement face</b><small id="faceName">A clear, front-facing photo works best</small></label>
+    <input id="faceFile" type="file" accept="image/*" hidden>
+    <div class="settings"><label for="strength">Face blend strength <strong id="strengthValue">90%</strong></label><input id="strength" type="range" min="35" max="100" value="90"></div>
+    <button id="prepareBtn" class="primary">Load face tracker</button>
+    <p id="status" class="status" role="status">Waiting for your files.</p>
+  </section>
+  <section class="preview panel"><div class="previewHead"><h3>Preview</h3><span id="fps">—</span></div><div class="stage"><video id="sourceVideo" playsinline muted controls></video><canvas id="output"></canvas><div id="empty" class="empty">Your processed preview appears here</div></div>
+    <div class="actions"><button id="playBtn" disabled>▶ Play & track</button><button id="stopBtn" disabled>■ Stop</button></div>
+    <button id="exportBtn" class="export" disabled>Export processed video</button>
+    <p class="hint">Prototype note: the first build exports the processed picture stream. Original audio is not yet muxed into the export.</p>
+  </section>
+  <details class="help"><summary>Tips for a better result</summary><ul><li>Use a sharp, evenly lit face photo looking toward the camera.</li><li>Choose a video where the target face stays visible and is not heavily covered.</li><li>Large head turns, profile views, hands over the face and strong lighting changes can cause artifacts.</li><li>For best alignment, use a face photo with a similar head angle to the video.</li></ul></details>
+  <footer>Runs in your browser. Your selected video and photo are processed on-device; the tracker library and model are downloaded when needed.</footer>
+</main>
+<script type="module" src="app.js"></script>
+</body></html>
